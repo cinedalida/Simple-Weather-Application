@@ -1,0 +1,123 @@
+<!-- Collab Activity: Dalida, Escander -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <input
+          class="search_bar"
+          type="text"
+          placeholder="Enter a city name to get the weather."
+          spellcheck="false"
+        />
+        <button><img src="images/search.png" /></button>
+      </div>
+
+      <!-- Error message (hidden) -->
+      <div class="error" style="display: none">
+        <p>City not found, Try another name!</p>
+      </div>
+
+      <div class="weather">
+        <img src="images/rain.png" class="weather-icon" />
+        <h1 class="temp">22°C</h1>
+        <h2 class="city">Imus, Cavite</h2>
+        <div class="details">
+          <div class="col">
+            <img src="images/wind.png" class="lower-icons" />
+            <div>
+              <p class="wind">15km/h</p>
+              <p>Wind Speed</p>
+            </div>
+          </div>
+
+          <div class="col">
+            <img src="images/humidity.png" class="lower-icons" />
+            <div>
+              <p class="humidity">50%</p>
+              <p>Humidity</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const apiKey = "6339ce7a09035db085ef224dea23acb4";
+      const apiUrl =
+        "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+      const searchBox = document.querySelector(".search input");
+      const searchBtn = document.querySelector(".search button");
+      const weatherIcon = document.querySelector(".weather-icon");
+
+      // OTHER NOTES:
+      // async function - to fetch the data from the api
+      // await keyword - to wait for the data to be fetched
+      // response.json() - to convert the response to json format
+      async function checkWeather(city) {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        const data = await response.json();
+
+        // error handling:
+        // if the city is not found, the response will be 404
+        if (response.status == 404) {
+          document.querySelector(".error").style.display = "block";
+          document.querySelector(".weather").style.display = "none";
+        } else {
+          // UPDATE THE WEATHER ICON
+          if (data.weather[0].main === "Clouds") {
+            weatherIcon.src = "images/cloudy.png";
+          } else if (data.weather[0].main === "Clear") {
+            weatherIcon.src = "images/clear.png";
+          } else if (data.weather[0].main === "Rain") {
+            weatherIcon.src = "images/rain.png";
+          } else if (data.weather[0].main === "Snow") {
+            weatherIcon.src = "images/snow.png";
+          } else if (data.weather[0].main === "Drizzle") {
+            weatherIcon.src = "images/drizzle.png";
+          } else if (data.weather[0].main === "Mist") {
+            weatherIcon.src = "images/mist.png";
+          }
+
+          // Show weather and hide error message
+          document.querySelector(".weather").style.display = "block";
+        }
+
+        // to fetch the weather icons
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML =
+          Math.round(data.main.temp) + "°C";
+        document.querySelector(".humidity").innerHTML =
+          data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+        document.querySelector(".error").style.display = "none";
+      }
+
+      // Event listener for the search button
+      searchBtn.addEventListener("click", () => {
+        checkWeather(searchBox.value);
+      });
+
+      // Event listener for the enter key
+      searchBox.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          checkWeather(searchBox.value);
+        }
+      });
+    </script>
+  </body>
+</html>

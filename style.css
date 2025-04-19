@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("Images/bgviolet2.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  height: 100vh;
+}
+
+.card {
+  width: 90%;
+  max-width: 550px;
+  height: auto;
+  background: linear-gradient(135deg, #ffa3ff, #511e80);
+  color: #fff;
+  margin: 50px auto 0;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+  opacity: 0.9;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search {
+  font-size: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 10px;
+}
+
+.search input {
+  height: 60px;
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  color: #555;
+  padding: 10px 25px;
+  border-radius: 30px;
+  flex: 1;
+  margin-right: 16px;
+  font-size: 18px;
+}
+
+.search input::placeholder {
+  color: #6f2681;
+}
+
+.search_bar {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search button {
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search button img {
+  width: 30px;
+}
+
+.search button:hover {
+  background: #4a0463;
+  filter: drop-shadow(
+    0 0 15px rgba(255, 255, 255, 0.8)
+  ); /* shining shimmering */
+}
+
+.weather-icon {
+  width: 400px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.weather-icon:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  filter: drop-shadow(
+    0 0 15px rgba(255, 255, 255, 0.8)
+  ); /* shining shimmering */
+}
+
+.lower-icons:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  filter: drop-shadow(
+    0 0 15px rgba(255, 255, 255, 0.8)
+  ); /* shining shimmering */
+}
+
+.weather h1 {
+  font-size: 100px;
+  font-weight: 500;
+}
+
+.weather h2 {
+  font-size: 45px;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin-top: 50px;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.col img {
+  width: 55px;
+  margin-right: 10px;
+}
+
+.humidity,
+.wind {
+  font-size: 36px;
+}
+
+.weather {
+  display: none;
+}
+
+.error p {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
